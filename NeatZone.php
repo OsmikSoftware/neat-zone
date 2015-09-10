@@ -13,7 +13,6 @@ class NeatZone{
             if(date('I')){
                 $offset -= 1;
             }
-            echo timezone_name_from_abbr("", $offset*3600, false);
             $this->DisplayedZone = $this->getNeatZoneForString(timezone_name_from_abbr("", $offset*3600, false));
         }
     }
