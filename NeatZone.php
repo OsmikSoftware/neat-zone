@@ -2,7 +2,6 @@
 class NeatZone{
     private $DisplayedZone;
     function __construct($zone){
-        var_dump($zone);
         //if string offset
         if(is_string($zone)){
             $this->DisplayedZone = $this->getNeatZoneForString($zone);
