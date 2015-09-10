@@ -2,17 +2,19 @@
 class NeatZone{
     private $DisplayedZone;
     function __construct($zone){
+        var_dump($zone);
         //if string offset
         if(is_string($zone)){
             $this->DisplayedZone = $this->getNeatZoneForString($zone);
         }
-        //if int offset
-        if(is_int($zone)){
+        //if int offset, checks for int or numeric string
+        if(is_numeric($zone)){
             $offset = $zone;
             //check daylight savings time
             if(date('I')){
                 $offset -= 1;
             }
+            echo timezone_name_from_abbr("", $offset*3600, false);
             $this->DisplayedZone = $this->getNeatZoneForString(timezone_name_from_abbr("", $offset*3600, false));
         }
     }
@@ -22,7 +24,7 @@ class NeatZone{
             'America/Detroit'=>"Detroit, MI"
         );
         //if not found in our list, return the default
-        if(!in_array($zone, $zones)){
+        if(!array_key_exists($zone, $zones)){
             return $zone;
         }
         return $zones[$zone];
